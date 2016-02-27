@@ -46,8 +46,13 @@ VSX.prototype.getOn = function(callback) {
         callback(null,on);
       } else {
         console.log("");
-      }
+        }
       client.destroy();
+    
+  });
+  
+    client.on('close', function() {
+    console.log('Connection closed');
     
   });
 
@@ -78,6 +83,11 @@ VSX.prototype.setOn = function(on, callback) {
     client.on('close', function() {
     console.log('Connection closed');
 
+});
+
+    client.on('close', function() {
+    console.log('Connection closed');
+    
 });
  
     client.on('error', function(ex) {
