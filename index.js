@@ -28,36 +28,35 @@ VSX.prototype.getServices = function() {
 VSX.prototype.getOn = function(callback) {
   
   var client = new net.Socket();
-  var on = false;
   client.connect(PORT, HOST, function() {
    
     console.log('CONNECTED TO: ' + HOST + ':' + PORT);
     client.write('?P\r\n');
 
-}); 
+  }); 
     
     client.on('data', function(data) {
     
       console.log('DATA: ' + data);
       if (data == "PWR1") {
-        on = false;
+        var on = false;
+        callback(null,on);
       } else if (data == "PWR0") {
-        on = true;
+        var on = true;
+        callback(null,on);
       } else {
         console.log("");
       }
-      callback(on);
       client.destroy();
     
-});
+  });
 
     client.on('error', function(ex) {
       console.log("handled error");
       console.log(ex);
       callback(ex)
     
-}); 
-  
+  }); 
 }
 
 
