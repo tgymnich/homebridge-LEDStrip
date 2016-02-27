@@ -46,7 +46,7 @@ VSX.prototype.getOn = function(callback) {
       } else {
         console.log("");
       }
-      callback(null, on);
+      callback(on);
       client.destroy();
     
 });
