@@ -39,7 +39,14 @@ VSX.prototype.getOn = function(callback) {
     client.on('data', function(data) {
     
       console.log('DATA: ' + data);
-      on = true;
+      if (data == "PW1") {
+        on = false;
+      } else if (data == "PW0") {
+        on = true;
+      } else {
+        console.log("");
+      }
+      callback(null, on);
       client.destroy();
     
 });
@@ -50,7 +57,7 @@ VSX.prototype.getOn = function(callback) {
     
 }); 
   
-  callback(null, on);
+  callback(null);
 }
 
 
