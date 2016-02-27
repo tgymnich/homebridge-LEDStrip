@@ -43,19 +43,23 @@ VSX.prototype.getOn = function(callback) {
       console.log(typeof data);
       console.log(typeof str);
       
-      if (str == "PWR1") {
-        console.log("AUS");
-        var on = false;
-        client.destroy();
-        callback(null,on);
-      } else if (str == "PWR0") {
+      switch(str) {
+    case "PWR0":
         console.log("AN");
         var on = true;
         client.destroy();
         callback(null,on);
-      } else {
+        break;
+    case "PWR1":
+        console.log("AUS");
+        var on = false;
+        client.destroy();
+        callback(null,on);
+        break;
+    default:
         console.log("waiting");
-        }
+    }
+
   });
   
     client.on('close', function() {
