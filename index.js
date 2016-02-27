@@ -41,14 +41,14 @@ VSX.prototype.getOn = function(callback) {
       if (data == "PWR1") {
         var on = false;
         callback(null,on);
+        client.destroy();
       } else if (data == "PWR0") {
         var on = true;
         callback(null,on);
+        client.destroy();
       } else {
-        console.log("");
+        console.log("waiting");
         }
-      client.destroy();
-    
   });
   
     client.on('close', function() {
