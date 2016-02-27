@@ -32,7 +32,7 @@ VSX.prototype.getOn = function(callback) {
   client.connect(PORT, HOST, function() {
    
     console.log('CONNECTED TO: ' + HOST + ':' + PORT);
-    client.write('P?\r\n');
+    client.write('?P\r\n');
 
 }); 
     
