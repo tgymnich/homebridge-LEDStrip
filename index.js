@@ -17,7 +17,8 @@ function VSX(log, config) {
 
   this.service = new Service.Switch(this.name);
   this.service.getCharacteristic(Characteristic.On)
-    .on('set', this.setOn.bind(this));
+    .on("set", this.setOn.bind(this))
+    .on("get", this.getOn.bind(this));
 }
 
 VSX.prototype.getServices = function() {
