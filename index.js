@@ -15,16 +15,24 @@ function VSX(log, config) {
   this.name = config.name;
   this.ip = config.ip;
 
-  this._service = new Service.Switch(this.name);
-  this._service.getCharacteristic(Characteristic.On)
-    .on('set', this._setOn.bind(this));
+  this.service = new Service.Switch(this.name);
+  this.service.getCharacteristic(Characteristic.On)
+    .on('set', this.setOn.bind(this));
 }
 
 VSX.prototype.getServices = function() {
-  return [this._service];
+  return [this.service];
 }
 
-VSX.prototype._setOn = function(on, callback) {
+VSX.prototype.getOn = function(on, callback) {
+  
+  
+  callback();
+}
+
+
+
+VSX.prototype.setOn = function(on, callback) {
 
   if(on){
     var client = new net.Socket();
