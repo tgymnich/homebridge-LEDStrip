@@ -25,8 +25,27 @@ VSX.prototype.getServices = function() {
   return [this.service];
 }
 
-VSX.prototype.getOn = function(on, callback) {
+VSX.prototype.getOn = function(callback) {
   
+  var client = new net.Socket();
+  client.connect(PORT, HOST, function() {
+   
+    console.log('CONNECTED TO: ' + HOST + ':' + PORT);
+
+}); 
+    
+    client.on('data', function(data) {
+    
+      console.log('DATA: ' + data);
+      client.destroy();
+    
+});
+
+    client.on('error', function(ex) {
+      console.log("handled error");
+      console.log(ex);
+    
+}); 
   
   callback();
 }
