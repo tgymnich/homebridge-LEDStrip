@@ -41,13 +41,14 @@ VSX.prototype.getOn = function(callback) {
       var str = data.toString();
       console.log(str);
       console.log(typeof data);
+      console.log(type of str);
       
-      if (data == "PWR1") {
+      if (str == "PWR1") {
         console.log("AUS");
         var on = false;
         client.destroy();
         callback(null,on);
-      } else if (data == "PWR0") {
+      } else if (str == "PWR0") {
         console.log("AN");
         var on = true;
         client.destroy();
