@@ -41,7 +41,7 @@ VSX.prototype.getOn = function(callback) {
       var str = data.toString();
       console.log(str);
       console.log(typeof data);
-      console.log(type of str);
+      console.log(typeof str);
       
       if (str == "PWR1") {
         console.log("AUS");
