@@ -54,10 +54,10 @@ VSX.prototype.getOn = function(callback) {
     client.on('error', function(ex) {
       console.log("handled error");
       console.log(ex);
+      callback(ex)
     
 }); 
   
-  callback(null);
 }
 
 
