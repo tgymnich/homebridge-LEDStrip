@@ -39,12 +39,12 @@ VSX.prototype.getOn = function(callback) {
     
       console.log('DATA: ' + data);
       if (data == "PWR1") {
-        console.log("AUS")
+        console.log("AUS");
         var on = false;
         client.destroy();
         callback(null,on);
       } else if (data == "PWR0") {
-        console.log("AN")
+        console.log("AN");
         var on = true;
         client.destroy();
         callback(null,on);
