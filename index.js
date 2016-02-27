@@ -43,6 +43,12 @@ VSX.prototype.getOn = function(callback) {
       console.log(typeof data);
       console.log(typeof str);
       
+      if (str.includes("PWR1")) {
+        console.log("K")
+      } else if (str.includes("PWR0")) {
+        console.log("OK")
+      }
+      
       switch(str) {
     case "PWR0":
         console.log("AN");
