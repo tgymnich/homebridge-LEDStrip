@@ -28,6 +28,7 @@ VSX.prototype.getServices = function() {
 VSX.prototype.getOn = function(callback) {
   
   var client = new net.Socket();
+  var on = false;
   client.connect(PORT, HOST, function() {
    
     console.log('CONNECTED TO: ' + HOST + ':' + PORT);
@@ -38,6 +39,7 @@ VSX.prototype.getOn = function(callback) {
     client.on('data', function(data) {
     
       console.log('DATA: ' + data);
+      on = true;
       client.destroy();
     
 });
@@ -48,7 +50,7 @@ VSX.prototype.getOn = function(callback) {
     
 }); 
   
-  callback();
+  callback(null, on);
 }
 
 
