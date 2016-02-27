@@ -38,6 +38,10 @@ VSX.prototype.getOn = function(callback) {
     client.on('data', function(data) {
     
       console.log('DATA: ' + data);
+      var str = data.toString();
+      console.log(str);
+      console.log(typeof data);
+      
       if (data == "PWR1") {
         console.log("AUS");
         var on = false;
