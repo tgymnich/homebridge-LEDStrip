@@ -5,82 +5,45 @@ module.exports = function(homebridge) {
 
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
-  homebridge.registerAccessory("homebridge-vsx", "VSX", VSX);
+  homebridge.registerAccessory("ledStrip", "LED", LED);
 }
 
-function VSX(log, config) {
+function LED(log, config) {
   this.log = log;
   this.name = config.name;
-  this.HOST = config.ip;
-  this.PORT = 23;
+  this.HOST = "192.168.178.7";
+  this.PORT = 200;
 
-  this.service = new Service.Switch(this.name);
-  this.service.getCharacteristic(Characteristic.On)
-    .on("set", this.setOn.bind(this))
-    .on("get", this.getOn.bind(this));
+  this.lightbulbService = new Service.Lightbulb(this.name);
+	
+	lightbulbService
+		.addCharacteristic(Characteristic.Hue)
+		.on('set', this.setHue.bind(this));
+
+  lightbulbService
+	  .getCharacteristic(Characteristic.On)
+		.on('set', this.setOn.bind(this));
+
+  lightbulbService
+		.addCharacteristic(Characteristic.Saturation)
+		.on('set', this.setSaturation.bind(this));
+
+	lightbulbService
+		.addCharacteristic(new Characteristic.Brightness())
+		.on('set', this.setBrightness.bind(this));
 }
 
 VSX.prototype.getServices = function() {
-  return [this.service];
+  return [this.lightbulbService];
 }
 
-VSX.prototype.getOn = function(callback) {
-  
+VSX.prototype.setHue = function(hue, callback) {
   var client = new net.Socket();
-  client.connect(this.PORT, this.HOST, function() {
-   
-    console.log('CONNECTED TO: ' + this.HOST + ':' + this.PORT);
-    client.write('?P\r\n');
-
-  }); 
-    
-    client.on('data', function(data) {
-    
-      console.log('DATA: ' + data);
-      var str = data.toString();
-      
-      if (str.includes("PWR1")) {
-        console.log("AUS");
-        var on = false;
-        client.destroy();
-        callback(null,on);
-        
-      } else if (str.includes("PWR0")) {
-        console.log("AN");
-        var on = true;
-        client.destroy();
-        callback(null,on);
-        
-      } else {
-        console.log("waiting");
-      }
-
-  });
-  
-    client.on('close', function() {
-    console.log('Connection closed');
-    
-  });
-
-    client.on('error', function(ex) {
-      console.log("handled error");
-      console.log(ex);
-      callback(ex)
-    
-  }); 
-}
-
-
-
-VSX.prototype.setOn = function(on, callback) {
-
-  if(on){
-    var client = new net.Socket();
     client.connect(this.PORT, this.HOST, function() {
 
     console.log('CONNECTED TO: ' + this.HOST + ':' + this.PORT);
     // Write a message to the socket as soon as the client is connected, the server will receive it as message from the client 
-    client.write('PO\r\n');
+    client.write(hue);
     
     client.destroy();
   
@@ -101,31 +64,95 @@ VSX.prototype.setOn = function(on, callback) {
     console.log(ex);
     
 }); 
+  callback();
+}
 
-  } else {
-    var client = new net.Socket();
+VSX.prototype.setBrightness = function(brightness, callback) {
+  var client = new net.Socket();
     client.connect(this.PORT, this.HOST, function() {
 
     console.log('CONNECTED TO: ' + this.HOST + ':' + this.PORT);
     // Write a message to the socket as soon as the client is connected, the server will receive it as message from the client 
-    client.write('PF\r\n');
+    client.write(brightness);
     
     client.destroy();
-    
-    });
-    
-    //Add a 'close' event handler for the client sock
+  
+});
+     //Add a 'close' event handler for the client sock
+    client.on('close', function() {
+    console.log('Connection closed');
+
+});
+
     client.on('close', function() {
     console.log('Connection closed');
     
-    });
-    
+});
+ 
     client.on('error', function(ex) {
     console.log("handled error");
     console.log(ex);
     
-    }); 
+}); 
+  callback();
+}
+
+VSX.prototype.setSaturation = function(saturation, callback) {
+  var client = new net.Socket();
+    client.connect(this.PORT, this.HOST, function() {
+
+    console.log('CONNECTED TO: ' + this.HOST + ':' + this.PORT);
+    // Write a message to the socket as soon as the client is connected, the server will receive it as message from the client 
+    client.write(saturation);
     
-  }
+    client.destroy();
+  
+});
+     //Add a 'close' event handler for the client sock
+    client.on('close', function() {
+    console.log('Connection closed');
+
+});
+
+    client.on('close', function() {
+    console.log('Connection closed');
+    
+});
+ 
+    client.on('error', function(ex) {
+    console.log("handled error");
+    console.log(ex);
+    
+}); 
+  callback();
+}
+
+VSX.prototype.setOn = function(on, callback) {
+  var client = new net.Socket();
+    client.connect(this.PORT, this.HOST, function() {
+
+    console.log('CONNECTED TO: ' + this.HOST + ':' + this.PORT);
+    // Write a message to the socket as soon as the client is connected, the server will receive it as message from the client 
+    client.write("on");
+    
+    client.destroy();
+  
+});
+     //Add a 'close' event handler for the client sock
+    client.on('close', function() {
+    console.log('Connection closed');
+
+});
+
+    client.on('close', function() {
+    console.log('Connection closed');
+    
+});
+ 
+    client.on('error', function(ex) {
+    console.log("handled error");
+    console.log(ex);
+    
+}); 
   callback();
 }
