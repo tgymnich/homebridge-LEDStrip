@@ -1,5 +1,5 @@
 {
-  "name": "homebridge-led",
+  "name": "homebridge-LEDStrip",
   "version": "0.0.1",
   "description": "DIY LEDStrip plugin for homebridge: https://github.com/nfarina/homebridge",
   "license": "ISC",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/TG908/LEDStrip.git"
+    "url": "git://github.com/TG908/homebridge-LEDStrip.git"
   },
   "dependencies": {
     "request": "^2.65.0",
