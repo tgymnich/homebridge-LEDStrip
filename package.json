@@ -1,7 +1,7 @@
 {
-  "name": "homebridge-vsx",
-  "version": "1.0.2",
-  "description": "Pioneer-VSX plugin for homebridge: https://github.com/nfarina/homebridge",
+  "name": "homebridge-led",
+  "version": "0.0.1",
+  "description": "DIY LEDStrip plugin for homebridge: https://github.com/nfarina/homebridge",
   "license": "ISC",
   "keywords": [
     "homebridge-plugin"
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/TG908/homebridge-vsx.git"
+    "url": "git://github.com/TG908/LEDStrip.git"
   },
   "dependencies": {
     "request": "^2.65.0",
