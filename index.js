@@ -33,11 +33,11 @@ function LED(log, config) {
 		.on('set', this.setBrightness.bind(this));
 }
 
-VSX.prototype.getServices = function() {
+LED.prototype.getServices = function() {
   return [this.lightbulbService];
 }
 
-VSX.prototype.setHue = function(hue, callback) {
+LED.prototype.setHue = function(hue, callback) {
   var client = new net.Socket();
     client.connect(this.PORT, this.HOST, function() {
 
@@ -67,7 +67,7 @@ VSX.prototype.setHue = function(hue, callback) {
   callback();
 }
 
-VSX.prototype.setBrightness = function(brightness, callback) {
+LED.prototype.setBrightness = function(brightness, callback) {
   var client = new net.Socket();
     client.connect(this.PORT, this.HOST, function() {
 
@@ -97,7 +97,7 @@ VSX.prototype.setBrightness = function(brightness, callback) {
   callback();
 }
 
-VSX.prototype.setSaturation = function(saturation, callback) {
+LED.prototype.setSaturation = function(saturation, callback) {
   var client = new net.Socket();
     client.connect(this.PORT, this.HOST, function() {
 
@@ -127,7 +127,7 @@ VSX.prototype.setSaturation = function(saturation, callback) {
   callback();
 }
 
-VSX.prototype.setOn = function(on, callback) {
+LED.prototype.setOn = function(on, callback) {
   var client = new net.Socket();
     client.connect(this.PORT, this.HOST, function() {
 
