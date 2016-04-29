@@ -13,28 +13,30 @@ function LED(log, config) {
   this.name = config.name;
   this.HOST = "192.168.178.7";
   this.PORT = 200;
-
-  this.lightbulbService = new Service.Lightbulb(this.name);
-	
-	lightbulbService
-		.addCharacteristic(Characteristic.Hue)
-		.on('set', this.setHue.bind(this));
-
-  lightbulbService
-	  .getCharacteristic(Characteristic.On)
-		.on('set', this.setOn.bind(this));
-
-  lightbulbService
-		.addCharacteristic(Characteristic.Saturation)
-		.on('set', this.setSaturation.bind(this));
-
-	lightbulbService
-		.addCharacteristic(new Characteristic.Brightness())
-		.on('set', this.setBrightness.bind(this));
 }
 
 LED.prototype.getServices = function() {
-  return [this.lightbulbService];
+  
+  var lightbulbService = new Service.Lightbulb(this.name);
+	
+ lightbulbService
+	.addCharacteristic(Characteristic.Hue)
+	.on('set', this.setHue.bind(this));
+
+  lightbulbService
+	.getCharacteristic(Characteristic.On)
+	.on('set', this.setOn.bind(this));
+
+  lightbulbService
+	.addCharacteristic(Characteristic.Saturation)
+	.on('set', this.setSaturation.bind(this));
+
+lightbulbService
+	.addCharacteristic(new Characteristic.Brightness())
+	.on('set', this.setBrightness.bind(this));
+  
+  
+  return [lightbulbService];
 }
 
 LED.prototype.setHue = function(hue, callback) {
