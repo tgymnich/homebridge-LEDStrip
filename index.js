@@ -1,5 +1,6 @@
 var Service, Characteristic;
-var net = require('net');
+var raspi = require('raspi-llio');
+
 
 module.exports = function(homebridge) {
 
@@ -40,121 +41,29 @@ lightbulbService
 }
 
 LED.prototype.setHue = function(hue, callback) {
-  var client = new net.Socket();
-    client.connect(this.PORT, this.HOST, function() {
+	var pwm = new raspi.PWM();
+	raspi.PWM.setMode(0);
+	raspi.PWM.setClockDivisor(400);
+	raspi.PWM.setRange(1000);
 
-    console.log('CONNECTED TO: ' + this.HOST + ':' + this.PORT);
-    // Write a message to the socket as soon as the client is connected, the server will receive it as message from the client 
-    client.write(hue);
-    
-    client.destroy();
-  
-});
-     //Add a 'close' event handler for the client sock
-    client.on('close', function() {
-    console.log('Connection closed');
+	var value = 40;
+	pwm.write(value);
 
-});
 
-    client.on('close', function() {
-    console.log('Connection closed');
-    
-});
- 
-    client.on('error', function(ex) {
-    console.log("handled error");
-    console.log(ex);
-    
-}); 
-  callback();
+	 callback();
 }
 
 LED.prototype.setBrightness = function(brightness, callback) {
-  var client = new net.Socket();
-    client.connect(this.PORT, this.HOST, function() {
-
-    console.log('CONNECTED TO: ' + this.HOST + ':' + this.PORT);
-    // Write a message to the socket as soon as the client is connected, the server will receive it as message from the client 
-    client.write(brightness);
-    
-    client.destroy();
-  
-});
-     //Add a 'close' event handler for the client sock
-    client.on('close', function() {
-    console.log('Connection closed');
-
-});
-
-    client.on('close', function() {
-    console.log('Connection closed');
-    
-});
  
-    client.on('error', function(ex) {
-    console.log("handled error");
-    console.log(ex);
-    
-}); 
   callback();
 }
 
 LED.prototype.setSaturation = function(saturation, callback) {
-  var client = new net.Socket();
-    client.connect(this.PORT, this.HOST, function() {
-
-    console.log('CONNECTED TO: ' + this.HOST + ':' + this.PORT);
-    // Write a message to the socket as soon as the client is connected, the server will receive it as message from the client 
-    client.write(saturation);
-    
-    client.destroy();
   
-});
-     //Add a 'close' event handler for the client sock
-    client.on('close', function() {
-    console.log('Connection closed');
-
-});
-
-    client.on('close', function() {
-    console.log('Connection closed');
-    
-});
- 
-    client.on('error', function(ex) {
-    console.log("handled error");
-    console.log(ex);
-    
-}); 
   callback();
 }
 
 LED.prototype.setOn = function(on, callback) {
-  var client = new net.Socket();
-    client.connect(this.PORT, this.HOST, function() {
 
-    console.log('CONNECTED TO: ' + this.HOST + ':' + this.PORT);
-    // Write a message to the socket as soon as the client is connected, the server will receive it as message from the client 
-    client.write("on");
-    
-    client.destroy();
-  
-});
-     //Add a 'close' event handler for the client sock
-    client.on('close', function() {
-    console.log('Connection closed');
-
-});
-
-    client.on('close', function() {
-    console.log('Connection closed');
-    
-});
- 
-    client.on('error', function(ex) {
-    console.log("handled error");
-    console.log(ex);
-    
-}); 
   callback();
 }
