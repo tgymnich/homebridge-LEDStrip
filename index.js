@@ -105,7 +105,7 @@ LED.prototype.setOn = function(on, callback) {
   callback();
 }
 
-LED.prototype.hslToRgb = function(h, s, l){
+function hslToRgb(h, s, l) {
     var r, g, b;
 
     if(s == 0){
