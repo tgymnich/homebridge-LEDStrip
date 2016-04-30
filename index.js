@@ -54,7 +54,7 @@ LED.prototype.setHue = function(hue, callback) {
 	var r = 0
 	var g = 0
 	var b = 0
-	this.h = hue
+	this.h = hue/360
 	
 	var rgb = hslToRgb(hue, this.s, this.l)
 	console.log(rgb[0])
@@ -71,7 +71,7 @@ LED.prototype.setBrightness = function(brightness, callback) {
  	var r = 0
 	var g = 0
 	var b = 0
-	this.l = brightness
+	this.l = brightness/100
 	
 	var rgb = hslToRgb(this.h, this.s, brightness)
  
@@ -89,7 +89,7 @@ LED.prototype.setSaturation = function(saturation, callback) {
   	var r = 0
 	var g = 0
 	var b = 0
-	this.s = saturation
+	this.s = saturation/100
 	
 	var rgb = hslToRgb(this.hue, saturation, this.l)
 	
