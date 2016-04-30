@@ -6,6 +6,9 @@ var Gpio = require('pigpio').Gpio,
   	dutyCycle = 0,
   	blueLED = new Gpio(24, {mode: Gpio.OUTPUT}),
   	dutyCycle = 0;
+  var h = 0;
+  var = 0;
+  var = 0.5;
 
 module.exports = function(homebridge) {
 
@@ -17,9 +20,6 @@ module.exports = function(homebridge) {
 function LED(log, config) {
   this.log = log;
   this.name = config.name;
-  this.h = 0;
-  this.s = 0;
-  this.l = 0.5;
   this.HOST = '127.0.0.1';
   this.PORT = 8888;
  
@@ -53,9 +53,9 @@ LED.prototype.setHue = function(hue, callback) {
 	console.log("h")
 	console.log(hue)	
 
-	this.h = hue/360
+	h = hue/360
 	
-	var rgb = hslToRgb(this.h, this.s, this.l)
+	var rgb = hslToRgb(h, s, l)
 	
 	redLED.pwmWrite(rgb[0]);
   	greenLED.pwmWrite(rgb[1]);
@@ -68,9 +68,9 @@ LED.prototype.setHue = function(hue, callback) {
 LED.prototype.setBrightness = function(brightness, callback) {
  	console.log(brightness)
  
-	this.l = brightness/100
+	l = brightness/100
 	
-	var rgb = hslToRgb(this.h, this.s, this.l)
+	var rgb = hslToRgb(h, s, l)
  
   	redLED.pwmWrite(rgb[0]);
   	greenLED.pwmWrite(rgb[1]);
@@ -84,9 +84,9 @@ LED.prototype.setBrightness = function(brightness, callback) {
 LED.prototype.setSaturation = function(saturation, callback) {
   	console.log(saturation)
   
-	this.s = saturation/100
+	s = saturation/100
 	
-	var rgb = hslToRgb(this.h, this.s, this.l)
+	var rgb = hslToRgb(h, s, l)
 	
 	redLED.pwmWrite(rgb[0]);
   	greenLED.pwmWrite(rgb[1]);
