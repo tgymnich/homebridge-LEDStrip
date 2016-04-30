@@ -7,8 +7,8 @@ var Gpio = require('pigpio').Gpio,
   	blueLED = new Gpio(24, {mode: Gpio.OUTPUT}),
   	dutyCycle = 0;
   var h = 0;
-  var = 0;
-  var = 0.5;
+  var s = 0;
+  var l = 0.5;
 
 module.exports = function(homebridge) {
 
