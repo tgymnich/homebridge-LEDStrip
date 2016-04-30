@@ -57,9 +57,10 @@ LED.prototype.setHue = function(hue, callback) {
 	this.h = hue
 	
 	var rgb = hslToRgb(hue, this.s, this.l)
-		redLED.pwmWrite(rgb[0]);
-  	greenLED.pwmWrite(rgb[1]);
-  	blueLED.pwmWrite(rgb[2]);
+	console.log(rgb[0])
+	//redLED.pwmWrite(rgb[0]);
+  	//greenLED.pwmWrite(rgb[1]);
+  	//blueLED.pwmWrite(rgb[2]);
 	
 
 	 callback();
@@ -74,9 +75,9 @@ LED.prototype.setBrightness = function(brightness, callback) {
 	
 	var rgb = hslToRgb(this.h, this.s, brightness)
  
-  	redLED.pwmWrite(rgb[0]);
-  	greenLED.pwmWrite(rgb[1]);
-  	blueLED.pwmWrite(rgb[2]);
+  	//redLED.pwmWrite(rgb[0]);
+  	//greenLED.pwmWrite(rgb[1]);
+  	//blueLED.pwmWrite(rgb[2]);
  
  
  
@@ -92,9 +93,9 @@ LED.prototype.setSaturation = function(saturation, callback) {
 	
 	var rgb = hslToRgb(this.hue, saturation, this.l)
 	
-		redLED.pwmWrite(rgb[0]);
-  	greenLED.pwmWrite(rgb[1]);
-  	blueLED.pwmWrite(rgb[2]);
+	//redLED.pwmWrite(rgb[0]);
+  	//greenLED.pwmWrite(rgb[1]);
+  	//blueLED.pwmWrite(rgb[2]);
 	
   callback();
 }
