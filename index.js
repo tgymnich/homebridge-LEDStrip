@@ -71,7 +71,7 @@ LED.prototype.setBrightness = function(brightness, callback) {
  	var r = 0
 	var g = 0
 	var b = 0
-	this.l = brightness/100
+	this.l = 0.5
 	
 	var rgb = hslToRgb(this.h, this.s, brightness/100)
  
