@@ -60,9 +60,9 @@ LED.prototype.setHue = function(hue, callback) {
 	this.h = hue
 	
 	var rgb = hslToRgb(hue, this.s, this.l)
-	gpio.setPwmDutycycle(LED_1_GPIO, rgb[0]);
-	gpio.setPwmDutycycle(LED_2_GPIO, rgb[1]);
-	gpio.setPwmDutycycle(LED_3_GPIO, rgb[2]);
+	gpio.setPwmDutycycle(this.LED_1_GPIO, rgb[0]);
+	gpio.setPwmDutycycle(this.LED_2_GPIO, rgb[1]);
+	gpio.setPwmDutycycle(this.LED_3_GPIO, rgb[2]);
 	
 
 	 callback();
@@ -77,9 +77,9 @@ LED.prototype.setBrightness = function(brightness, callback) {
 	
 	var rgb = hslToRgb(this.h, this.s, brightness)
 	
-	gpio.setPwmDutycycle(LED_1_GPIO, rgb[0]);
-	gpio.setPwmDutycycle(LED_2_GPIO, rgb[1]);
-	gpio.setPwmDutycycle(LED_3_GPIO, rgb[2]);
+	gpio.setPwmDutycycle(this.LED_1_GPIO, rgb[0]);
+	gpio.setPwmDutycycle(this.LED_2_GPIO, rgb[1]);
+	gpio.setPwmDutycycle(this.LED_3_GPIO, rgb[2]);
  
   callback();
 }
@@ -93,9 +93,9 @@ LED.prototype.setSaturation = function(saturation, callback) {
 	
 	var rgb = hslToRgb(this.hue, saturation, this.l)
 	
-	gpio.setPwmDutycycle(LED_1_GPIO, rgb[0]);
-	gpio.setPwmDutycycle(LED_2_GPIO, rgb[1]);
-	gpio.setPwmDutycycle(LED_3_GPIO, rgb[2]);
+	gpio.setPwmDutycycle(this.LED_1_GPIO, rgb[0]);
+	gpio.setPwmDutycycle(this.LED_2_GPIO, rgb[1]);
+	gpio.setPwmDutycycle(this.LED_3_GPIO, rgb[2]);
 	
   callback();
 }
