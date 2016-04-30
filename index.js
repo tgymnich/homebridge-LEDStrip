@@ -1,7 +1,13 @@
 var Service, Characteristic;
-var PiFastGpio = require('pi-fast-gpio');
-var gpio = new PiFastGpio();
-
+var red = require('pigpio').Gpio,
+  	redLED = new Gpio(17, {mode: Gpio.OUTPUT}),
+  	dutyCycle = 0;
+var green = require('pigpio').Gpio,
+  	greeLED = new Gpio(22, {mode: Gpio.OUTPUT}),
+  	dutyCycle = 0;
+var blue = require('pigpio').Gpio,
+  	blueLED = new Gpio(24, {mode: Gpio.OUTPUT}),
+  	dutyCycle = 0;
 
 module.exports = function(homebridge) {
 
@@ -16,16 +22,9 @@ function LED(log, config) {
   this.h = 0;
   this.s = 0;
   this.l = 0;
-  this.LED_1_GPIO = 17;
-  this.LED_2_GPIO = 22;
-  this.LED_3_GPIO = 24;
   this.HOST = '127.0.0.1';
   this.PORT = 8888;
-  
-  	gpio.connect(this.HOST, this.PORT, function(err) {
-  		if (err) throw err;
-
-	})
+ 
 }
 
 LED.prototype.getServices = function() {
@@ -60,9 +59,9 @@ LED.prototype.setHue = function(hue, callback) {
 	this.h = hue
 	
 	var rgb = hslToRgb(hue, this.s, this.l)
-	gpio.setPwmDutycycle(this.LED_1_GPIO, rgb[0]);
-	gpio.setPwmDutycycle(this.LED_2_GPIO, rgb[1]);
-	gpio.setPwmDutycycle(this.LED_3_GPIO, rgb[2]);
+		redLED.pwmWrite(rgb[0]);
+  	greenLED.pwmWrite(rgb[1]);
+  	blueLED.pwmWrite(rgb[2]);
 	
 
 	 callback();
@@ -76,10 +75,12 @@ LED.prototype.setBrightness = function(brightness, callback) {
 	this.l = brightness
 	
 	var rgb = hslToRgb(this.h, this.s, brightness)
-	
-	gpio.setPwmDutycycle(this.LED_1_GPIO, rgb[0]);
-	gpio.setPwmDutycycle(this.LED_2_GPIO, rgb[1]);
-	gpio.setPwmDutycycle(this.LED_3_GPIO, rgb[2]);
+ 
+  	redLED.pwmWrite(rgb[0]);
+  	greenLED.pwmWrite(rgb[1]);
+  	blueLED.pwmWrite(rgb[2]);
+ 
+ 
  
   callback();
 }
@@ -93,9 +94,9 @@ LED.prototype.setSaturation = function(saturation, callback) {
 	
 	var rgb = hslToRgb(this.hue, saturation, this.l)
 	
-	gpio.setPwmDutycycle(this.LED_1_GPIO, rgb[0]);
-	gpio.setPwmDutycycle(this.LED_2_GPIO, rgb[1]);
-	gpio.setPwmDutycycle(this.LED_3_GPIO, rgb[2]);
+		redLED.pwmWrite(rgb[0]);
+  	greenLED.pwmWrite(rgb[1]);
+  	blueLED.pwmWrite(rgb[2]);
 	
   callback();
 }
