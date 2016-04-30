@@ -22,7 +22,7 @@ function LED(log, config) {
   this.HOST = '127.0.0.1';
   this.PORT = 8888;
   
-  	gpio.connect(HOST, PORT, function(err) {
+  	gpio.connect(this.HOST, this.PORT, function(err) {
   		if (err) throw err;
 
 	})
