@@ -1,12 +1,10 @@
 var Service, Characteristic;
-var red = require('pigpio').Gpio,
-  	redLED = new red(17, {mode: redLED.OUTPUT}),
-  	dutyCycle = 0;
-var green = require('pigpio').Gpio,
-  	greeLED = new green(22, {mode: greenLED.OUTPUT}),
-  	dutyCycle = 0;
-var blue = require('pigpio').Gpio,
-  	blueLED = new blue(24, {mode: blueLED.OUTPUT}),
+var Gpio = require('pigpio').Gpio,
+  	redLED = new Gpio(17, {mode: Gpio.OUTPUT}),
+  	dutyCycle = 0,
+  	greeLED = new Gpio(22, {mode: Gpio.OUTPUT}),
+  	dutyCycle = 0,
+  	blueLED = new Gpio(24, {mode: Gpio.OUTPUT}),
   	dutyCycle = 0;
 
 module.exports = function(homebridge) {
