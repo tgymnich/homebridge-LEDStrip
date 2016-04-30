@@ -50,7 +50,8 @@ lightbulbService
 }
 
 LED.prototype.setHue = function(hue, callback) {
-	
+	console.log("h")
+	console.log(hue)	
 
 	this.h = hue/360
 	
@@ -65,7 +66,7 @@ LED.prototype.setHue = function(hue, callback) {
 }
 
 LED.prototype.setBrightness = function(brightness, callback) {
- 
+ 	console.log(brightness)
  
 	this.l = brightness/100
 	
@@ -81,7 +82,7 @@ LED.prototype.setBrightness = function(brightness, callback) {
 }
 
 LED.prototype.setSaturation = function(saturation, callback) {
-  
+  	console.log(saturation)
   
 	this.s = saturation/100
 	
