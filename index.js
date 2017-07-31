@@ -37,6 +37,10 @@ LED.prototype.getServices = function() {
 	.getCharacteristic(Characteristic.On)
 	.on('set', this.setOn.bind(this));
 
+ lightbulbService
+ 	.getCharacteristic(Characteristic.Off)
+	.on('set', this.setOff.bind(this));
+	
   lightbulbService
 	.addCharacteristic(Characteristic.Saturation)
 	.on('set', this.setSaturation.bind(this));
@@ -86,21 +90,36 @@ LED.prototype.setSaturation = function(saturation, callback) {
   	greenLED.pwmWrite(rgb[1]);
   	blueLED.pwmWrite(rgb[2]);
 	
-  callback();
+ 	callback();
 }
 
 LED.prototype.setOn = function(on, callback) {
+	
+	var rgb = hslToRgb(h, s, l)
 
-  callback();
+	redLED.pwmWrite(rgb[0]);
+  	greenLED.pwmWrite(rgb[1]);
+  	blueLED.pwmWrite(rgb[2]);
+
+  	callback();
+}
+
+LED.prototype.setOff = function(off, callback) {
+
+	redLED.pwmWrite(0);
+  	greenLED.pwmWrite(0);
+  	blueLED.pwmWrite(0);
+	
+ 	callback();
 }
 
 function hslToRgb(h, s, l) {
     var r, g, b;
 
     if(s == 0){
-        r = g = b = l; // achromatic
-    }else{
-        var hue2rgb = function hue2rgb(p, q, t){
+        r = g = b = l;
+    } else {
+        var hue2rgb = function hue2rgb(p, q, t) {
             if(t < 0) t += 1;
             if(t > 1) t -= 1;
             if(t < 1/6) return p + (q - p) * 6 * t;
