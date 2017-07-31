@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "request": "^2.65.0",
-    "pigpio" : ""
+    "pigpio" : "",
     "hsl-to-rgb": "1.0.0"
   }
 }
