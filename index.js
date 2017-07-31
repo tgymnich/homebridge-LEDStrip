@@ -68,9 +68,9 @@ LED.prototype.setHue = function(hue, callback) {
 	this.log(rgb[2]);
 
 	
-	redLED.pwmWrite(rgb[0]);
-  	greenLED.pwmWrite(rgb[1]);
-  	blueLED.pwmWrite(rgb[2]);
+	redLED.pwmWrite(Math.round(rgb[0]));
+  	greenLED.pwmWrite(Math.round(rgb[1]));
+  	blueLED.pwmWrite(Math.round(rgb[2]));
 	
 
 	 callback();
@@ -90,9 +90,9 @@ LED.prototype.setBrightness = function(brightness, callback) {
 	
 	//var rgb = converter(h, s, l);
  
-  	redLED.pwmWrite(rgb[0]);
-  	greenLED.pwmWrite(rgb[1]);
-  	blueLED.pwmWrite(rgb[2]);
+  	redLED.pwmWrite(Math.round(rgb[0]));
+  	greenLED.pwmWrite(Math.round(rgb[1]));
+  	blueLED.pwmWrite(Math.round(rgb[2]));
  
   callback();
 }
@@ -107,9 +107,9 @@ LED.prototype.setSaturation = function(saturation, callback) {
 
 	//var rgb = converter(h, s, l);
 	
-	redLED.pwmWrite(rgb[0]);
-  	greenLED.pwmWrite(rgb[1]);
-  	blueLED.pwmWrite(rgb[2]);
+	redLED.pwmWrite(Math.round(rgb[0]));
+  	greenLED.pwmWrite(Math.round(rgb[1]));
+  	blueLED.pwmWrite(Math.round(rgb[2]));
 	
  	callback();
 }
@@ -121,9 +121,9 @@ LED.prototype.setOn = function(on, callback) {
 		//var rgb = converter(h, s, l);
 		var rgb = color.rgb().array();
 
-		redLED.pwmWrite(rgb[0]);
-  		greenLED.pwmWrite(rgb[1]);
-  		blueLED.pwmWrite(rgb[2]);
+		redLED.pwmWrite(Math.round(rgb[0]));
+  		greenLED.pwmWrite(Math.round(rgb[1]));
+  		blueLED.pwmWrite(Math.round(rgb[2]));
 
 	} else {
 		redLED.pwmWrite(0);
