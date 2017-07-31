@@ -83,6 +83,9 @@ LED.prototype.setBrightness = function(brightness, callback) {
 	color.lightness = l;
 	var rgb = color.rgb().array();
 	this.log(color.rgb().string());
+	this.log(color.rgb().array());
+	this.log(rgb[0]);
+	this.log("55")
 
 	
 	//var rgb = converter(h, s, l);
