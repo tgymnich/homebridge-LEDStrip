@@ -52,59 +52,37 @@ lightbulbService
 
 LED.prototype.setHue = function(hue, callback) {
 	
-	h = hue;
-	var color = Color.hsl(h, s, l)	
-	var rgb = color.rgb().array();
-	
-	//var rgb = converter(h, s, l);
-	this.log(color.hsl().string());
-	this.log(color.rgb().string());
-	this.log(rgb[0]);
-	this.log(rgb[1]);
-	this.log(rgb[2]);
+	h = hue/360;
+	var rgb = hslToRgb(h, s, l);
 
+	redLED.pwmWrite(rgb[0]);
+  	greenLED.pwmWrite(rgb[1]);
+  	blueLED.pwmWrite(rgb[2]);
 	
-	redLED.pwmWrite(Math.round(rgb[0]));
-  	greenLED.pwmWrite(Math.round(rgb[1]));
-  	blueLED.pwmWrite(Math.round(rgb[2]));
-	
-
 	 callback();
 }
 
 LED.prototype.setBrightness = function(brightness, callback) { 
 	
-	l = brightness;
-	var color = Color.hsl(h, s, l)
-	var rgb = color.rgb().array();
-	this.log(color.rgb().string());
-	this.log(color.rgb().array());
-	this.log(rgb[0]);
-	this.log("55")
+	l = brightness/100;
+	var rgb = hslToRgb(h, s, l);
 
-	
-	//var rgb = converter(h, s, l);
- 
-  	redLED.pwmWrite(Math.round(rgb[0]));
-  	greenLED.pwmWrite(Math.round(rgb[1]));
-  	blueLED.pwmWrite(Math.round(rgb[2]));
+	redLED.pwmWrite(rgb[0]);
+  	greenLED.pwmWrite(rgb[1]);
+  	blueLED.pwmWrite(rgb[2]);
  
   callback();
 }
 
 LED.prototype.setSaturation = function(saturation, callback) {
   
-	s = saturation;
+	s = saturation/100;
 	
-	var color = Color.hsl(h, s, l)
-	var rgb = color.rgb().array();
-	this.log(color.rgb().string());
+		var rgb = hslToRgb(h, s, l);
 
-	//var rgb = converter(h, s, l);
-	
-	redLED.pwmWrite(Math.round(rgb[0]));
-  	greenLED.pwmWrite(Math.round(rgb[1]));
-  	blueLED.pwmWrite(Math.round(rgb[2]));
+		redLED.pwmWrite(rgb[0]);
+  		greenLED.pwmWrite(rgb[1]);
+  		blueLED.pwmWrite(rgb[2]);
 	
  	callback();
 }
@@ -113,13 +91,11 @@ LED.prototype.setOn = function(on, callback) {
 	
 	if (on == true) {
 		
-		//var rgb = converter(h, s, l);
-		var color = Color.hsl(h, s, l)
-		var rgb = color.rgb().array();
+		var rgb = hslToRgb(h, s, l);
 
-		redLED.pwmWrite(Math.round(rgb[0]));
-  		greenLED.pwmWrite(Math.round(rgb[1]));
-  		blueLED.pwmWrite(Math.round(rgb[2]));
+		redLED.pwmWrite(rgb[0]);
+  		greenLED.pwmWrite(rgb[1]);
+  		blueLED.pwmWrite(rgb[2]);
 
 	} else {
 		redLED.pwmWrite(0);
