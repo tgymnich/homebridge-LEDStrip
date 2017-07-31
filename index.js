@@ -62,6 +62,11 @@ LED.prototype.setHue = function(hue, callback) {
 	
 	//var rgb = converter(h, s, l);
 	
+	this.log(rgb[0]);
+	this.log(rgb[1]);
+	this.log(rgb[2]);
+
+	
 	redLED.pwmWrite(rgb[0]);
   	greenLED.pwmWrite(rgb[1]);
   	blueLED.pwmWrite(rgb[2]);
