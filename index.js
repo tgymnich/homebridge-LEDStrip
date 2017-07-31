@@ -114,7 +114,7 @@ LED.prototype.setOn = function(on, callback) {
 	if (on == true) {
 		
 		//var rgb = converter(h, s, l);
-		var color = Color.hsl(h, s, brightness)
+		var color = Color.hsl(h, s, l)
 		var rgb = color.rgb().array();
 
 		redLED.pwmWrite(Math.round(rgb[0]));
