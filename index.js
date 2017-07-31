@@ -61,7 +61,8 @@ LED.prototype.setHue = function(hue, callback) {
 	var rgb = color.rgb().array();
 	
 	//var rgb = converter(h, s, l);
-	
+	this.log(color.hsl().string());
+	this.log(color.rgb().string());
 	this.log(rgb[0]);
 	this.log(rgb[1]);
 	this.log(rgb[2]);
