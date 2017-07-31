@@ -11,7 +11,7 @@ var Gpio = require('pigpio').Gpio,
   var s = 0;
   var l = 0.5;
 
-var color = Color.hsl(0, 0, 0)
+var color = Color.hsl(60, 0.6, 0.8)
 
 
 module.exports = function(homebridge) {
