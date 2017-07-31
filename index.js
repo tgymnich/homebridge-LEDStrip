@@ -11,9 +11,6 @@ var Gpio = require('pigpio').Gpio,
   var s = 0;
   var l = 0.5;
 
-var color = Color.hsl(180, 100, 50)
-
-
 module.exports = function(homebridge) {
 
   Service = homebridge.hap.Service;
@@ -55,9 +52,8 @@ lightbulbService
 
 LED.prototype.setHue = function(hue, callback) {
 	
-	//h = hue/360;
-	
-	this.color.hue(hue);
+	h = hue;
+	var color = Color.hsl(h, s, l)	
 	var rgb = color.rgb().array();
 	
 	//var rgb = converter(h, s, l);
@@ -78,9 +74,8 @@ LED.prototype.setHue = function(hue, callback) {
 
 LED.prototype.setBrightness = function(brightness, callback) { 
 	
-	//l = brightness/100;
-	
-	this.color.lightness(brightness);
+	l = brightness;
+	var color = Color.hsl(h, s, l)
 	var rgb = color.rgb().array();
 	this.log(color.rgb().string());
 	this.log(color.rgb().array());
@@ -99,9 +94,9 @@ LED.prototype.setBrightness = function(brightness, callback) {
 
 LED.prototype.setSaturation = function(saturation, callback) {
   
-	//s = saturation/100;
+	s = saturation;
 	
-	this.color.saturation(saturation);
+	var color = Color.hsl(h, s, l)
 	var rgb = color.rgb().array();
 	this.log(color.rgb().string());
 
@@ -119,6 +114,7 @@ LED.prototype.setOn = function(on, callback) {
 	if (on == true) {
 		
 		//var rgb = converter(h, s, l);
+		var color = Color.hsl(h, s, brightness)
 		var rgb = color.rgb().array();
 
 		redLED.pwmWrite(Math.round(rgb[0]));
