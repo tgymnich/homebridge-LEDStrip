@@ -11,7 +11,7 @@ var Gpio = require('pigpio').Gpio,
   var s = 0;
   var l = 0.5;
 
-var color = Color.hsl(180, 1, 0.5)
+var color = Color.hsl(180, 100, 50)
 
 
 module.exports = function(homebridge) {
@@ -78,9 +78,9 @@ LED.prototype.setHue = function(hue, callback) {
 
 LED.prototype.setBrightness = function(brightness, callback) { 
 	
-	l = brightness/100;
+	//l = brightness/100;
 	
-	color.lightness = l;
+	color.lightness = brightness;
 	var rgb = color.rgb().array();
 	this.log(color.rgb().string());
 	this.log(color.rgb().array());
@@ -99,9 +99,9 @@ LED.prototype.setBrightness = function(brightness, callback) {
 
 LED.prototype.setSaturation = function(saturation, callback) {
   
-	s = saturation/100;
+	//s = saturation/100;
 	
-	color.saturation = s;
+	color.saturation = saturation;
 	var rgb = color.rgb().array();
 	this.log(color.rgb().string());
 
