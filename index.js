@@ -36,10 +36,6 @@ LED.prototype.getServices = function() {
   lightbulbService
 	.getCharacteristic(Characteristic.On)
 	.on('set', this.setOn.bind(this));
-
- lightbulbService
- 	.getCharacteristic(Characteristic.Off)
-	.on('set', this.setOff.bind(this));
 	
   lightbulbService
 	.addCharacteristic(Characteristic.Saturation)
@@ -95,22 +91,21 @@ LED.prototype.setSaturation = function(saturation, callback) {
 
 LED.prototype.setOn = function(on, callback) {
 	
-	var rgb = hslToRgb(h, s, l)
+	if (on == true) {
+		
+		var rgb = hslToRgb(h, s, l)
 
-	redLED.pwmWrite(rgb[0]);
-  	greenLED.pwmWrite(rgb[1]);
-  	blueLED.pwmWrite(rgb[2]);
+		redLED.pwmWrite(rgb[0]);
+  		greenLED.pwmWrite(rgb[1]);
+  		blueLED.pwmWrite(rgb[2]);
 
-  	callback();
-}
-
-LED.prototype.setOff = function(off, callback) {
-
-	redLED.pwmWrite(0);
-  	greenLED.pwmWrite(0);
-  	blueLED.pwmWrite(0);
+	} else {
+		redLED.pwmWrite(0);
+  		greenLED.pwmWrite(0);
+  		blueLED.pwmWrite(0);		
+	}
 	
- 	callback();
+	callback();
 }
 
 function hslToRgb(h, s, l) {
