@@ -1,5 +1,5 @@
 var Service, Characteristic;
-var converter = require('hsl-to-rgb');
+var Color = require('color');
 var Gpio = require('pigpio').Gpio,
   	redLED = new Gpio(17, {mode: Gpio.OUTPUT}),
   	dutyCycle = 0,
@@ -10,6 +10,9 @@ var Gpio = require('pigpio').Gpio,
   var h = 0;
   var s = 0;
   var l = 0.5;
+
+var color = Color.hsl(0, 0, 0)
+
 
 module.exports = function(homebridge) {
 
@@ -51,9 +54,13 @@ lightbulbService
 }
 
 LED.prototype.setHue = function(hue, callback) {
-	h = hue/360
 	
-	var rgb = converter(h, s, l)
+	//h = hue/360;
+	
+	color.hue = hue;
+	var rgb = color.rgb().array();
+	
+	//var rgb = converter(h, s, l);
 	
 	redLED.pwmWrite(rgb[0]);
   	greenLED.pwmWrite(rgb[1]);
@@ -64,9 +71,14 @@ LED.prototype.setHue = function(hue, callback) {
 }
 
 LED.prototype.setBrightness = function(brightness, callback) { 
-	l = brightness/100
 	
-	var rgb = converter(h, s, l);
+	l = brightness/100;
+	
+	color.lightness = l;
+	var rgb = color.rgb().array();
+
+	
+	//var rgb = converter(h, s, l);
  
   	redLED.pwmWrite(rgb[0]);
   	greenLED.pwmWrite(rgb[1]);
@@ -77,9 +89,12 @@ LED.prototype.setBrightness = function(brightness, callback) {
 
 LED.prototype.setSaturation = function(saturation, callback) {
   
-	s = saturation/100
+	s = saturation/100;
 	
-	var rgb = converter(h, s, l)
+	color.saturation = s;
+	var rgb = color.rgb().array();
+
+	//var rgb = converter(h, s, l);
 	
 	redLED.pwmWrite(rgb[0]);
   	greenLED.pwmWrite(rgb[1]);
@@ -92,7 +107,8 @@ LED.prototype.setOn = function(on, callback) {
 	
 	if (on == true) {
 		
-		var rgb = converter(h, s, l)
+		//var rgb = converter(h, s, l);
+		var rgb = color.rgb().array();
 
 		redLED.pwmWrite(rgb[0]);
   		greenLED.pwmWrite(rgb[1]);
