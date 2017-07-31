@@ -1,6 +1,6 @@
 {
   "name": "homebridge-LEDStrip",
-  "version": "0.0.37",
+  "version": "0.0.38",
   "description": "DIY LEDStrip plugin for homebridge: https://github.com/nfarina/homebridge",
   "license": "ISC",
   "keywords": [
