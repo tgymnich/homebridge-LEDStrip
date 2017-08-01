@@ -64,9 +64,7 @@ LED.prototype.setHue = function(hue, callback) {
 
 LED.prototype.setBrightness = function(brightness, callback) { 
 	
-	this.log(brightness)
-	l = brightness*2;
-	this.log(l)
+	l = brightness/200;
 	var rgb = hslToRgb(h, s, l);
 
 	redLED.pwmWrite(rgb[0]);
