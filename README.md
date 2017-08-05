@@ -1,6 +1,6 @@
 # homebridge-LEDStrip
 
-A homebridge plugin for controlling an analog LED Strip with a rapsberry pi. 
+A homebridge plugin for controlling an analog LED Strip using a Rapsberry Pi. 
 
 # Installation
 
