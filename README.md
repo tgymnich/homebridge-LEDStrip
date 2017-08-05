@@ -1,4 +1,4 @@
-# homebridge-panasonictv
+# homebridge-LEDStrip
 
 A homebridge plugin for controlling an analog LED Strip with a rapsberry pi. 
 
@@ -16,12 +16,8 @@ Configuration sample:
  ```
 "accessories": [
         {
-            "accessory": "TV",
-            "name": "TV",
-            "description": "Livingroom tv",
-            "ip": "192.168.178.20",
-            "maxVolume": 15
+            "accessory": "LED",
+            "name": "OSRAM LED Strip"
         }
-
     ]
 ```
