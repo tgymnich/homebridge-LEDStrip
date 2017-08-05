@@ -21,3 +21,8 @@ Configuration sample:
         }
     ]
 ```
+
+# Schematic
+
+![alt text](https://github.com/TG908/homebridge-LEDStrip/blob/master/Homebridge%20LEDStrip%20-%20Schematic.png?raw=true "Logo Title Text 1")
+
