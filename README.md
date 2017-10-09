@@ -26,5 +26,5 @@ Configuration sample:
 
 Watch out while wiring up your pi. I am not responsible if you fry your Pi.
 
-![alt text](https://github.com/TG908/homebridge-LEDStrip/blob/master/Homebridge%20LEDStrip%20-%20Schematic.png?raw=true "Logo Title Text 1")
+![alt text](https://github.com/TG908/homebridge-LEDStrip/blob/master/Homebridge%20LEDStrip%20-%20Schematic.png?raw=true "Schematic")
 
