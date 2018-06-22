@@ -1,4 +1,4 @@
-# homebridge-LEDStrip
+# homebridge-LEDStrip [![npm version](https://badge.fury.io/js/homebridge-LEDStrip.svg)](https://badge.fury.io/js/homebridge-LEDStrip)
 
 A homebridge plugin for controlling an analog LED Strip using a Rapsberry Pi. 
 
