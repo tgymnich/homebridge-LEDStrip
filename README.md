@@ -5,7 +5,7 @@ A homebridge plugin for controlling an analog LED Strip using a Rapsberry Pi.
 # Installation
 
 1. Install homebridge using: `npm install -g homebridge`
-2. Install pigpio `sudo apt-get install pigpio`
+2. Install pigpio `apt-get install pigpio`
 3. Install this plugin using: `npm install -g homebridge-LEDStrip`
 4. Update your configuration file. See sample-config.json in this repository for a sample. 
 5. Run Homebridge as root
