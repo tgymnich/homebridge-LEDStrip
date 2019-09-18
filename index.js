@@ -20,9 +20,6 @@ module.exports = function(homebridge) {
 function LED(log, config) {
   this.log = log;
   this.name = config.name;
-  this.HOST = '127.0.0.1';
-  this.PORT = 8888;
- 
 }
 
 LED.prototype.getServices = function() {
