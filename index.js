@@ -27,22 +27,22 @@ LED.prototype.getServices = function () {
 
 	lightbulbService
 		.addCharacteristic(Characteristic.Hue)
-		.on('get', this.getHue.bind(this));
+		.on('get', this.getHue.bind(this))
 		.on('set', this.setHue.bind(this));
 
 	lightbulbService
 		.getCharacteristic(Characteristic.On)
-		.on('get', this.getOn.bind(this));
+		.on('get', this.getOn.bind(this))
 		.on('set', this.setOn.bind(this));
 
 	lightbulbService
 		.addCharacteristic(Characteristic.Saturation)
-		.on('get', this.getSaturation.bind(this));
+		.on('get', this.getSaturation.bind(this))
 		.on('set', this.setSaturation.bind(this));
 
 	lightbulbService
 		.addCharacteristic(Characteristic.Brightness())
-		.on('get', this.getBrightness.bind(this));
+		.on('get', this.getBrightness.bind(this))
 		.on('set', this.setBrightness.bind(this));
 
 
