@@ -96,7 +96,7 @@ LED.prototype.setSaturation = function (saturation, callback) {
 }
 
 LED.prototype.getOn = function (callback) {
-	var on = redLED.getPwmDutyCycle() == 0 && greenLED.getPwmDutyCycle() == 0 && blueLED.getPwmDutyCycle() == 0;
+	var on = redLED.getPwmDutyCycle() > 0 || greenLED.getPwmDutyCycle() > 0 || blueLED.getPwmDutyCycle() > 0;
 	callback(on);
 }
 
