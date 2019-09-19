@@ -12,7 +12,6 @@ var s = 0;
 var l = 0.5;
 
 module.exports = function (homebridge) {
-
 	Service = homebridge.hap.Service;
 	Characteristic = homebridge.hap.Characteristic;
 	homebridge.registerAccessory("LEDStrip", "LED", LED);
@@ -24,31 +23,37 @@ function LED(log, config) {
 }
 
 LED.prototype.getServices = function () {
-
 	var lightbulbService = new Service.Lightbulb(this.name);
 
 	lightbulbService
 		.addCharacteristic(Characteristic.Hue)
+		.on('get', this.getHue.bind(this));
 		.on('set', this.setHue.bind(this));
 
 	lightbulbService
 		.getCharacteristic(Characteristic.On)
+		.on('get', this.getOn.bind(this));
 		.on('set', this.setOn.bind(this));
 
 	lightbulbService
 		.addCharacteristic(Characteristic.Saturation)
+		.on('get', this.getSaturation.bind(this));
 		.on('set', this.setSaturation.bind(this));
 
 	lightbulbService
 		.addCharacteristic(Characteristic.Brightness())
+		.on('get', this.getBrightness.bind(this));
 		.on('set', this.setBrightness.bind(this));
 
 
 	return [lightbulbService];
 }
 
-LED.prototype.setHue = function (hue, callback) {
+LED.prototype.getHue = function (callback) {
+	callback(h);
+}
 
+LED.prototype.setHue = function (hue, callback) {
 	h = hue / 360;
 	var rgb = hslToRgb(h, s, l);
 
@@ -59,8 +64,11 @@ LED.prototype.setHue = function (hue, callback) {
 	callback();
 }
 
-LED.prototype.setBrightness = function (brightness, callback) {
+LED.prototype.getBrightness = function (callback) {
+	callback(l);
+}
 
+LED.prototype.setBrightness = function (brightness, callback) {
 	l = brightness / 200;
 	var rgb = hslToRgb(h, s, l);
 
@@ -71,8 +79,11 @@ LED.prototype.setBrightness = function (brightness, callback) {
 	callback();
 }
 
-LED.prototype.setSaturation = function (saturation, callback) {
+LED.prototype.getSaturation = function (callback) {
+	callback(s);
+}
 
+LED.prototype.setSaturation = function (saturation, callback) {
 	s = saturation / 100;
 
 	var rgb = hslToRgb(h, s, l);
@@ -84,16 +95,19 @@ LED.prototype.setSaturation = function (saturation, callback) {
 	callback();
 }
 
+LED.prototype.getOn = function (callback) {
+	var on = redLED.getPwmDutyCycle() == 0 && greenLED.getPwmDutyCycle() == 0 && blueLED.getPwmDutyCycle() == 0;
+	callback(on);
+}
+
 LED.prototype.setOn = function (on, callback) {
 
 	if (on == true) {
-
 		var rgb = hslToRgb(h, s, l);
 
 		redLED.pwmWrite(rgb[0]);
 		greenLED.pwmWrite(rgb[1]);
 		blueLED.pwmWrite(rgb[2]);
-
 	} else {
 		redLED.pwmWrite(0);
 		greenLED.pwmWrite(0);
