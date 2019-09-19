@@ -41,7 +41,7 @@ LED.prototype.getServices = function () {
 		.on('set', this.setSaturation.bind(this));
 
 	lightbulbService
-		.addCharacteristic(Characteristic.Brightness
+		.addCharacteristic(Characteristic.Brightness)
 		.on('get', this.getBrightness.bind(this))
 		.on('set', this.setBrightness.bind(this));
 
