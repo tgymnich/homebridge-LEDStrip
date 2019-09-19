@@ -27,31 +27,24 @@ LED.prototype.getServices = function () {
 
 	lightbulbService
 		.addCharacteristic(Characteristic.Hue)
-		.on('get', this.getHue.bind(this))
 		.on('set', this.setHue.bind(this));
 
 	lightbulbService
 		.getCharacteristic(Characteristic.On)
-		.on('get', this.getOn.bind(this))
 		.on('set', this.setOn.bind(this));
 
 	lightbulbService
 		.addCharacteristic(Characteristic.Saturation)
-		.on('get', this.getSaturation.bind(this))
 		.on('set', this.setSaturation.bind(this));
 
 	lightbulbService
 		.addCharacteristic(Characteristic.Brightness)
-		.on('get', this.getBrightness.bind(this))
 		.on('set', this.setBrightness.bind(this));
 
 
 	return [lightbulbService];
 }
 
-LED.prototype.getHue = function (callback) {
-	callback(h);
-}
 
 LED.prototype.setHue = function (hue, callback) {
 	h = hue / 360;
@@ -64,9 +57,6 @@ LED.prototype.setHue = function (hue, callback) {
 	callback();
 }
 
-LED.prototype.getBrightness = function (callback) {
-	callback(l);
-}
 
 LED.prototype.setBrightness = function (brightness, callback) {
 	l = brightness / 200;
@@ -79,9 +69,6 @@ LED.prototype.setBrightness = function (brightness, callback) {
 	callback();
 }
 
-LED.prototype.getSaturation = function (callback) {
-	callback(s);
-}
 
 LED.prototype.setSaturation = function (saturation, callback) {
 	s = saturation / 100;
@@ -93,11 +80,6 @@ LED.prototype.setSaturation = function (saturation, callback) {
 	blueLED.pwmWrite(rgb[2]);
 
 	callback();
-}
-
-LED.prototype.getOn = function (callback) {
-	var on = redLED.getPwmDutyCycle() > 0 || greenLED.getPwmDutyCycle() > 0 || blueLED.getPwmDutyCycle() > 0;
-	callback(on);
 }
 
 LED.prototype.setOn = function (on, callback) {
